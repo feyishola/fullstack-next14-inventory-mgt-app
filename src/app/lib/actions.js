@@ -65,12 +65,13 @@ export const updateUser = async (formData) => {
       password,
     };
 
+    // Remove empty or undefined fields
     Object.keys(updateFields).forEach((key) => {
       if (updateFields[key] === "" || updateFields[key] === undefined) {
         delete updateFields[key];
       }
     });
-    console.log({ updateFields });
+    console.log(updateFields);
     await UserController.updateUser(id, updateFields);
   } catch (error) {
     console.log(error);

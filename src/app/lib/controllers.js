@@ -177,12 +177,9 @@ class UserDAO {
 
   async updateUser(id, dataObj) {
     try {
-      const result = await userModel.findByIdAndUpdate(
-        { _id: id },
-        {
-          $set: { dataObj },
-        }
-      );
+      const result = await userModel.findByIdAndUpdate({ _id: id }, dataObj, {
+        new: true,
+      });
       return result;
     } catch (error) {
       console.log(error.message);
