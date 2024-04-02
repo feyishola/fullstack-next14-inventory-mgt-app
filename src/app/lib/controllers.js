@@ -148,11 +148,15 @@ class UserDAO {
     }
   }
 
-  // async getUserByEmail(email) {
-  //
-  //   const result = await userModel.findOne({ email });
-  //   return result;
-  // }
+  async getUserByEmail(email) {
+    try {
+      const result = await userModel.findOne({ email });
+      return result;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error("Unable to get single user");
+    }
+  }
 
   async getUsers(query, page) {
     const regex = new RegExp(query, "i");
@@ -161,13 +165,18 @@ class UserDAO {
 
     try {
       // await connectionToDB();
+
+      // to return the number of existence
       const count = await userModel
         .find({ firstname: { $regex: regex } })
         .count();
+
+      // to return users and pages
       const result = await userModel
         .find({ firstname: { $regex: regex } })
         .limit(itemPerPage)
         .skip(itemPerPage * (page - 1));
+
       return { count, result };
     } catch (error) {
       console.log(error.message);
