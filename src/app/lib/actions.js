@@ -15,11 +15,13 @@ export async function authenticate(_prevState, formData) {
     console.log({ _prevState, formData });
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log({ email, password });
+
     await signIn("credentials", {
       email,
       password,
+      redirect: false,
     });
+    console.log("login Succesfully");
   } catch (error) {
     if (error) {
       switch (error.type) {
@@ -31,8 +33,6 @@ export async function authenticate(_prevState, formData) {
     }
     throw error;
   }
-  //   const { email, password } = Object.fromEntries(formData);
-  //   console.log(email, password);
 }
 
 // handling forms data
