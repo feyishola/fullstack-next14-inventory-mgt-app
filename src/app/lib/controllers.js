@@ -53,10 +53,12 @@ class ProductDAO {
       const count = await productModel
         .find({ title: { $regex: regex } })
         .count();
+
       const result = await productModel
         .find({ title: { $regex: regex } })
         .limit(itemPerPage)
         .skip(itemPerPage * (page - 1));
+
       return { count, result };
     } catch (error) {
       console.log(error.message);
@@ -64,30 +66,12 @@ class ProductDAO {
     }
   }
 
-  async updateProduct(
-    id,
-    title,
-    price,
-    description,
-    stock,
-    color,
-    size,
-    category
-  ) {
+  async updateProduct(id, dataObj) {
     try {
       const result = await productModel.findByIdAndUpdate(
         { _id: id },
-        {
-          $set: {
-            title,
-            price,
-            description,
-            stock,
-            color,
-            size,
-            category,
-          },
-        }
+        dataObj,
+        { new: true }
       );
       return result;
     } catch (error) {

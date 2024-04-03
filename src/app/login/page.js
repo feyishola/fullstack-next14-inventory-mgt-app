@@ -2,6 +2,7 @@
 import React from "react";
 import { authenticate } from "../lib/actions";
 import { useFormState, useFormStatus } from "react-dom";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);

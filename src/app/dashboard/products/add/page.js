@@ -1,9 +1,13 @@
+import { createProduct } from "@/app/lib/actions";
 import React from "react";
 
 const AddProductPage = () => {
   return (
     <div className="cont bg-[#182237] p-5 rounded-lg mt-5">
-      <form action="" className="form flex flex-wrap justify-between">
+      <form
+        action={createProduct}
+        className="form flex flex-wrap justify-between"
+      >
         <input
           type="text"
           placeholder="title"
@@ -52,7 +56,7 @@ const AddProductPage = () => {
         <input
           type="text"
           placeholder="expiry Date"
-          name="expiry Date"
+          name="expiryDate"
           className="p-7 w-[45%] bg-[#151c2c] text-white rounded-md mb-8 border-2 border-[#2e374a]"
         />
         <textarea

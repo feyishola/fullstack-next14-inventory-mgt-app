@@ -1,43 +1,47 @@
+import { updateProduct } from "@/app/lib/actions";
+import { ProductController } from "@/app/lib/controllers";
 import Image from "next/image";
 import React from "react";
 
-const SingleProductPage = () => {
+const SingleProductPage = async ({ params }) => {
+  const { id } = params;
+  const product = await ProductController.getProduct(id);
   return (
     <div className="cont flex gap-12 mt-5">
       <div className="infocont w-[30%] bg-[#182237] p-5 rounded-lg font-bold text-white h-max">
         <div className="imgcont w-full h-[300px] relative rounded-xl overflow-hidden mb-5">
           <Image src={"/noproduct.jpg"} alt="userImage" fill />
         </div>
-        IPhone
+        {product?.title}
       </div>
       <div className="formcont w-[70%] bg-[#182237] p-5 rounded-lg">
-        <form className="form flex flex-col">
+        <form action={updateProduct} className="form flex flex-col">
           <label className="text-xs">Product Name</label>
           <input
             type="text"
             name="productname"
-            placeholder="Productname"
+            placeholder={product?.title}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
           <label className="text-xs">Price</label>
           <input
             type="text"
             name="price"
-            placeholder="Price"
+            placeholder={product?.price}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
           <label className="text-xs">Color</label>
           <input
             type="text"
             name="Color"
-            placeholder="Color"
+            placeholder={product?.color}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
           <label className="text-xs">Stock</label>
           <input
             type="number"
             name="stock"
-            placeholder="Stock"
+            placeholder={product?.stock}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
           <label className="text-xs">Product Category</label>
@@ -59,12 +63,12 @@ const SingleProductPage = () => {
           <input
             type="text"
             name="size"
-            placeholder="Size"
+            placeholder={product?.size}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
           <label className="text-xs">Product Image</label>
           <input
-            type="file"
+            type="text"
             name="productImage"
             placeholder="Product Image"
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
@@ -74,7 +78,7 @@ const SingleProductPage = () => {
             name="desc"
             id="desc"
             rows={16}
-            placeholder="Description"
+            placeholder={product?.description}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />
 

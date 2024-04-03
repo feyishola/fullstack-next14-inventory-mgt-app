@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { UserController } from "./controllers";
+import { ProductController, UserController } from "./controllers";
 import { connectionToDB } from "./mongo.con";
 import { redirect } from "next/navigation";
 import { signIn } from "../auth";
@@ -92,7 +92,6 @@ export const updateUser = async (formData) => {
         delete updateFields[key];
       }
     });
-    console.log(updateFields);
     await UserController.updateUser(id, updateFields);
   } catch (error) {
     console.log(error);
@@ -112,4 +111,68 @@ export const deleteUser = async (formData) => {
     throw new Error("error deleting user");
   }
   revalidatePath("/dashboard/users"); // dis would refresh the the data as soon as u fetch.. in react we were using "swr" or "useQuery" to achieve this.
+};
+
+///****************************************************************Products server action  *********************** */
+
+export const createProduct = async (formData) => {
+  const { title, category, price, stock, color, size, expiryDate, desc } =
+    Object.fromEntries(formData);
+  try {
+    const newProduct = await ProductController.createProducts(
+      title,
+      price,
+      desc,
+      stock,
+      color,
+      size,
+      category,
+      expiryDate
+    );
+  } catch (error) {
+    console.log(error);
+    throw new Error("error deleting user");
+  }
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+};
+
+export const updateProduct = async (formData) => {
+  const { id, productname, price, stock, color, size, desc } =
+    Object.fromEntries(formData);
+
+  try {
+    const updateFields = {
+      title: productname,
+      price,
+      stock,
+      color,
+      size,
+      desc,
+    };
+
+    // Remove empty or undefined fields
+    Object.keys(updateFields).forEach((key) => {
+      if (updateFields[key] === "" || updateFields[key] === undefined) {
+        delete updateFields[key];
+      }
+    });
+    await ProductController.updateProduct(id, updateFields);
+  } catch (error) {
+    console.log(error);
+    throw new Error("error updating a new product");
+  }
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+};
+
+export const deleteProduct = async (formData) => {
+  const id = formData.get("id");
+  try {
+    const result = ProductController.deleteProduct(id);
+  } catch (error) {
+    console.log(error);
+    throw new Error("error deleting product");
+  }
+  revalidatePath("/dashboard/products");
 };

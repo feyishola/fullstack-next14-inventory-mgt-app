@@ -1,5 +1,6 @@
 import Pagination from "@/app/components/dashboard/pagination/pagination";
 import Search from "@/app/components/dashboard/search/search";
+import { deleteProduct } from "@/app/lib/actions";
 import { ProductController } from "@/app/lib/controllers";
 import { formatter } from "@/app/utils/helpers";
 import Image from "next/image";
@@ -26,47 +27,51 @@ const ProductPage = async ({ searchParams }) => {
             <td className="p-[10px]">Prod. Name</td>
             <td className="p-[10px]">Description</td>
             <td className="p-[10px]">Price At</td>
-            <td className="p-[10px]">Created At</td>
+            <td className="p-[10px]">Expitry Date</td>
             <td className="p-[10px]">Stock</td>
             <td className="p-[10px]">Action</td>
           </tr>
         </thead>
         <tbody>
-          {/* {result.map(product=>())} */}
-          <tr>
-            <td className="p-[10px]">
-              <div className="user flex items-center gap-[10px]">
-                <Image
-                  src={"/noproduct.jpg"}
-                  alt="user"
-                  width={40}
-                  height={40}
-                  className="userImg rounded-full object-cover"
-                />
-                IPhone
-              </div>
-            </td>
-            <td className="p-[10px]">Blah blah blah</td>
-            <td className="p-[10px]">{formatter.format(1000)}</td>
-            <td className="p-[10px]">13-01-2022</td>
-            <td className="p-[10px]">72</td>
-            <td className="p-[10px]">
-              <div className="flex gap-[10px]">
-                <Link href={"/dashboard/products/id"}>
-                  <button
-                    className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-teal-800"}`}
-                  >
-                    View
-                  </button>
-                </Link>
-                <button
-                  className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-[#DC143C]"}`}
-                >
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+          {result.map((product) => (
+            <tr>
+              <td className="p-[10px]">
+                <div className="user flex items-center gap-[10px]">
+                  <Image
+                    src={"/noproduct.jpg"}
+                    alt="user"
+                    width={40}
+                    height={40}
+                    className="userImg rounded-full object-cover"
+                  />
+                  {product?.title}
+                </div>
+              </td>
+              <td className="p-[10px]">{product?.description}</td>
+              <td className="p-[10px]">{formatter.format(product?.price)}</td>
+              <td className="p-[10px]">{product?.expiryDate}</td>
+              <td className="p-[10px]">{product?.stock}</td>
+              <td className="p-[10px]">
+                <div className="flex gap-[10px]">
+                  <Link href={`/dashboard/products/${product?.id}`}>
+                    <button
+                      className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-teal-800"}`}
+                    >
+                      View
+                    </button>
+                  </Link>
+                  <form action={deleteProduct}>
+                    <input type="hidden" name="id" value={product?.id} />
+                    <button
+                      className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-[#DC143C]"}`}
+                    >
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <Pagination count={count} />

@@ -1,5 +1,15 @@
 import { MdSupervisedUserCircle } from "react-icons/md";
 
+//Dummy Data
+
+// const item = {
+//   title:"Stats Card",
+//   number:1000,
+//   details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+//   change:50,
+
+// }
+
 
 const Card = ({ item }) => {
   return (
@@ -9,6 +19,7 @@ const Card = ({ item }) => {
         <span className="title">{item?.title}</span>
         <span className="text-2xl font-medium">{item?.number}</span>
         <span className="text-sm font-light">
+          {item?.details}
           <span className={item?.change > 0 ? "text-[lime]" : "text-[red]"}>
             {item?.change}%
           </span>{" "}
