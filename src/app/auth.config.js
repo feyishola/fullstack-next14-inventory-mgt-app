@@ -9,6 +9,12 @@ export const authConfig = {
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+      console.log({ isLoggedIn });
+      // If the user is authenticated and not on the dashboard page, redirect to dashboard immediately
+      if (isLoggedIn && !isOnDashboard) {
+        return NextResponse.redirect(new URL("/dashboard", nextUrl));
+      }
+
       if (isOnDashboard) {
         if (isLoggedIn) return true;
         return false;

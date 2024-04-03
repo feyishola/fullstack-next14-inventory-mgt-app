@@ -10,26 +10,21 @@ import { signIn } from "../auth";
   await connectionToDB();
 })();
 
-export async function authenticate(_prevState, formData) {
+export async function authenticate(_currentState, formData) {
   try {
-    console.log({ _prevState, formData });
+    // console.log({ _currentState, formData });
     const email = formData.get("email");
     const password = formData.get("password");
-
+    console.log({ _currentState, email, password });
     await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirect: true,
     });
     console.log("login Succesfully");
   } catch (error) {
-    if (error) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return "Invalid credentials.";
-        default:
-          return "Something went wrong.";
-      }
+    if (error.type === "CredentialsSignin") {
+      return "Invalid credentials.";
     }
     throw error;
   }

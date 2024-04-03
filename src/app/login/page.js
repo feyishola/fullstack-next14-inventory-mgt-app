@@ -48,6 +48,7 @@ function LoginButton() {
     if (pending) {
       event.preventDefault();
     }
+    // event.preventDefault();
   };
 
   return (
