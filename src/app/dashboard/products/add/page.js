@@ -21,13 +21,13 @@ const AddProductPage = () => {
           className="p-7 w-[45%] bg-[#151c2c] text-white rounded-md mb-8 border-2 border-[#2e374a]"
         >
           <option value={"general"}>Choose a category</option>
-          <option value={"electronics"}>Electronics</option>
-          <option value={"kitchen"}>Kitchen</option>
-          <option value={"toys"}>Toys</option>
-          <option value={"clothings"}> Clothings</option>
-          <option value={"beverages"}>Beverages</option>
-          <option value={"computers"}>Computers</option>
-          <option value={"phones"}>Phones</option>
+          <option value={"Electronics"}>Electronics</option>
+          <option value={"Kitchen"}>Kitchen</option>
+          <option value={"Toys"}>Toys</option>
+          <option value={"Clothings"}> Clothings</option>
+          <option value={"Beverages"}>Beverages</option>
+          <option value={"Computers"}>Computers</option>
+          <option value={"Phones"}>Phones</option>
         </select>
         <input
           type="number"
