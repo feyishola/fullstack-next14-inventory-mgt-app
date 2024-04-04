@@ -9,7 +9,7 @@ export const connectionToDB = async () => {
     // const db = await mongoose.connect(process.env.MONGODB_URI);
     // dbConn.isConnected = db.connections[0].readyState;
   } catch (error) {
-    console.log(error.message);
-    throw new Error("Unable to create connetion to Database");
+    // console.log(error.message, ">>>>>");
+    throw new Error("Unable to create connetion to Database" + error.message);
   }
 };

@@ -1,9 +1,9 @@
 import { productModel, userModel } from "./models";
 import { connectionToDB } from "./mongo.con";
 
-(async () => {
-  await connectionToDB();
-})();
+// (async () => {
+//   await connectionToDB();
+// })();
 class ProductDAO {
   async createProducts(
     title,

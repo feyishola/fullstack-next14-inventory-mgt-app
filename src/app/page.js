@@ -33,10 +33,11 @@ export const Hero = () => {
           The modern landing page for
         </div>
         <div className="font-bold text-4xl text-[#04a9f4] p-5">
-          React developers
+          Inventory Management Solutions
         </div>
         <div className=" text-[#718096] p-5 text-xl">
-          The easiest way to build a React landing page in seconds.
+          The easiest way to streamline your inventory management processes
+          using Next technology.
         </div>
       </div>
       <div className="my-12 items-center justify-center mx-auto">
