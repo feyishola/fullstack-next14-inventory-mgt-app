@@ -3,7 +3,7 @@ import { addUser } from "../lib/actions";
 
 const RegisterPage = () => {
   return (
-    <div className="cont bg-[#182237] p-5 rounded-lg mt-5">
+    <div className="cont bg-[#182237] p-5 rounded-lg my-20 w-[40%] h-[60%] mx-auto ">
       <form action={addUser} className="form flex flex-wrap justify-between">
         <input
           type="text"
@@ -60,7 +60,7 @@ const RegisterPage = () => {
         <textarea
           name="address"
           id="address"
-          rows={16}
+          rows={5}
           placeholder="Address"
           className="p-7 text-white rounded-md mb-8 border-2 border-[#2e374a] w-full bg-[#151c2c]"
         />

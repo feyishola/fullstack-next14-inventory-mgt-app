@@ -11,6 +11,7 @@ export default function Home() {
         </button>
       </Link> */}
       <Hero />
+      <CenterImage />
       <Main />
     </main>
   );
@@ -113,6 +114,14 @@ export const Main = () => {
           </button>
         </div>
       </div>
+    </div>
+  );
+};
+
+export const CenterImage = () => {
+  return (
+    <div className="flex justify-center items-center mt-[100px]">
+      <Image src={"/inventory2.gif"} alt="img" width={900} height={800} />
     </div>
   );
 };
