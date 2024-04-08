@@ -163,7 +163,7 @@ class UserDAO {
 
       return { count, result };
     } catch (error) {
-      console.log(error.message);
+      console.log({ error });
       throw new Error("Unable to get users");
     }
   }

@@ -16,10 +16,11 @@ const SingleProductPage = async ({ params }) => {
       </div>
       <div className="formcont w-[70%] bg-[#182237] p-5 rounded-lg">
         <form action={updateProduct} className="form flex flex-col">
+          <input type="hidden" name="id" value={product?.id} />
           <label className="text-xs">Product Name</label>
           <input
             type="text"
-            name="productname"
+            name="title"
             placeholder={product?.title}
             className="p-5 border-2 border-[#2e374a] rounded bg-[#151c2c] text-white my-[10px]"
           />

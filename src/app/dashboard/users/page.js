@@ -11,7 +11,7 @@ const Userspage = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
 
   const { count, result } = await UserController.getUsers(query, page);
-
+  console.log(result);
   return (
     <div className="p-5 rounded-lg mt-5 bg-[#182237]">
       <div className="flex items-center justify-between">
@@ -35,7 +35,7 @@ const Userspage = async ({ searchParams }) => {
         </thead>
         <tbody>
           {result.map((user) => (
-            <tr key={user.id}>
+            <tr key={user?.id}>
               <td className="p-[10px]">
                 <div className="user flex items-center gap-[10px]">
                   <Image
@@ -45,7 +45,7 @@ const Userspage = async ({ searchParams }) => {
                     height={40}
                     className="userImg rounded-full object-cover"
                   />
-                  {user?.id ? user.firstname : "No one"}
+                  {user?.id ? user?.firstname : "No one"}
                 </div>
               </td>
               <td className="p-[10px]">{user?.email}</td>
@@ -56,7 +56,7 @@ const Userspage = async ({ searchParams }) => {
               <td className="p-[10px]">Active</td>
               <td className="p-[10px]">
                 <div className="flex gap-[10px]">
-                  <Link href={`/dashboard/users/${user.id}`}>
+                  <Link href={`/dashboard/users/${user?.id}`}>
                     <button
                       className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-teal-800"}`}
                     >
@@ -64,7 +64,7 @@ const Userspage = async ({ searchParams }) => {
                     </button>
                   </Link>
                   <form action={deleteUser}>
-                    <input type="hidden" name="id" value={user.id} />
+                    <input type="hidden" name="id" value={user?.id} />
                     <button
                       className={`${"py-1 px-2 rounded text-white border-none cursor-pointer"} ${"bg-[#DC143C]"}`}
                     >

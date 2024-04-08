@@ -138,12 +138,11 @@ export const createProduct = async (formData) => {
 };
 
 export const updateProduct = async (formData) => {
-  const { id, productname, price, stock, color, size, desc } =
+  const { id, title, price, stock, color, size, desc } =
     Object.fromEntries(formData);
-
   try {
     const updateFields = {
-      title: productname,
+      title,
       price,
       stock,
       color,
