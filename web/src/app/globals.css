@@ -11,6 +11,9 @@
   --color-ink: #17171a;
   --color-muted: #6b6a66;
   --color-faint: #9b9a94;
+  /* Surfaces that stay dark in both themes (banners, toasts) */
+  --color-night: #17171a;
+  --color-hover: rgb(23 23 26 / 0.05);
 
   --color-brand-50: #eef0ff;
   --color-brand-100: #e0e3ff;
@@ -30,10 +33,66 @@
   --shadow-pop: 0 20px 50px -20px rgb(23 23 26 / 0.35);
 }
 
+/* Dark theme: an explicit choice (data-theme="dark") or, with no choice
+   saved, the operating system's preference */
+@layer base {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-canvas: #0e0e10;
+    --color-surface: #17171a;
+    --color-line: #28282d;
+    --color-line-strong: #3a3a41;
+    --color-ink: #ececef;
+    --color-muted: #a3a3ab;
+    --color-faint: #71717a;
+    --color-night: #26262c;
+    --color-hover: rgb(255 255 255 / 0.07);
+    --color-brand-50: rgb(114 117 245 / 0.14);
+    --color-brand-100: rgb(114 117 245 / 0.26);
+    --color-brand-500: #7477f6;
+    --color-brand-600: #5b5ff0;
+    --color-brand-700: #b3b5ff;
+    --color-ok: #45d195;
+    --color-ok-soft: rgb(69 209 149 / 0.14);
+    --color-warn: #f3b65a;
+    --color-warn-soft: rgb(243 182 90 / 0.14);
+    --color-bad: #ff7482;
+    --color-bad-soft: rgb(255 116 130 / 0.15);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-pop: 0 20px 50px -20px rgb(0 0 0 / 0.8);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-canvas: #0e0e10;
+    --color-surface: #17171a;
+    --color-line: #28282d;
+    --color-line-strong: #3a3a41;
+    --color-ink: #ececef;
+    --color-muted: #a3a3ab;
+    --color-faint: #71717a;
+    --color-night: #26262c;
+    --color-hover: rgb(255 255 255 / 0.07);
+    --color-brand-50: rgb(114 117 245 / 0.14);
+    --color-brand-100: rgb(114 117 245 / 0.26);
+    --color-brand-500: #7477f6;
+    --color-brand-600: #5b5ff0;
+    --color-brand-700: #b3b5ff;
+    --color-ok: #45d195;
+    --color-ok-soft: rgb(69 209 149 / 0.14);
+    --color-warn: #f3b65a;
+    --color-warn-soft: rgb(243 182 90 / 0.14);
+    --color-bad: #ff7482;
+    --color-bad-soft: rgb(255 116 130 / 0.15);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4);
+    --shadow-pop: 0 20px 50px -20px rgb(0 0 0 / 0.8);
+  }
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
-    color-scheme: light;
   }
   body {
     @apply bg-canvas text-ink font-sans;

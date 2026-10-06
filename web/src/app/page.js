@@ -4,6 +4,7 @@ import { ArrowRight, BellRing, ListChecks, Receipt, Users } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { DemoButton } from "@/components/AuthForms";
 import { ButtonLink } from "@/components/ui";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Server actions on this page may seed sample data, which can exceed the default limit on a cold start
 export const maxDuration = 60;
@@ -37,6 +38,7 @@ export default function Home() {
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <Logo />
         <nav className="flex items-center gap-2">
+          <ThemeToggle className="hidden sm:inline-flex" />
           <ButtonLink href="/login" variant="ghost">
             Sign in
           </ButtonLink>
@@ -95,7 +97,7 @@ export default function Home() {
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-ink p-10 text-white sm:flex-row sm:items-center">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl bg-night p-10 text-white sm:flex-row sm:items-center">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Ready to stop counting shelves?</h2>
               <p className="mt-1 text-white/70">Set up in under a minute. Start with sample data or your own products.</p>

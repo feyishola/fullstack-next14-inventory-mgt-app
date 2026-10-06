@@ -193,7 +193,7 @@ export function StockDialog({ product, products, type = "sale", currency, label,
             <h2 className="truncate font-semibold">{title}</h2>
             {product && <p className="text-xs text-muted tabular">{product.stock} in stock</p>}
           </div>
-          <button type="button" onClick={close} aria-label="Close" className="rounded-md p-1 text-muted hover:bg-black/5 hover:text-ink">
+          <button type="button" onClick={close} aria-label="Close" className="rounded-md p-1 text-muted hover:bg-hover hover:text-ink">
             <X className="size-5" />
           </button>
         </div>

@@ -28,7 +28,7 @@ function Links({ role, attention, onNavigate }) {
             aria-current={active ? "page" : undefined}
             className={cx(
               "flex h-9 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors",
-              active ? "bg-surface text-ink shadow-[var(--shadow-card)] ring-1 ring-line" : "text-muted hover:bg-black/5 hover:text-ink",
+              active ? "bg-surface text-ink shadow-[var(--shadow-card)] ring-1 ring-line" : "text-muted hover:bg-hover hover:text-ink",
             )}
           >
             <Icon className="size-4" />
@@ -56,14 +56,14 @@ export function MobileNav({ children, ...props }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="lg:hidden">
-      <button type="button" onClick={() => setOpen(true)} aria-label="Open menu" className="rounded-md p-2 text-muted hover:bg-black/5">
+      <button type="button" onClick={() => setOpen(true)} aria-label="Open menu" className="rounded-md p-2 text-muted hover:bg-hover">
         <Menu className="size-5" />
       </button>
       {open && (
-        <div className="fixed inset-0 z-40 bg-ink/40" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-40 bg-hover0" onClick={() => setOpen(false)}>
           <div className="flex h-full w-72 flex-col bg-canvas p-4 shadow-[var(--shadow-pop)] animate-rise" onClick={(e) => e.stopPropagation()}>
             <div className="mb-4 flex justify-end">
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="rounded-md p-2 text-muted hover:bg-black/5">
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="rounded-md p-2 text-muted hover:bg-hover">
                 <X className="size-5" />
               </button>
             </div>

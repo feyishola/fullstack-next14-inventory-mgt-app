@@ -6,13 +6,14 @@ import { Logo } from "@/components/Logo";
 import { MobileNav, SideNav } from "@/components/Nav";
 import { Flash } from "@/components/Flash";
 import { Toaster } from "@/components/toast";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { requireUser } from "@/lib/dal";
 import { attentionCount } from "@/lib/attention";
 
 function DemoBanner({ expiresAt }) {
   const hours = Math.max(1, Math.round((new Date(expiresAt).getTime() - Date.now()) / 36e5));
   return (
-    <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-ink px-4 py-2 text-center text-sm text-white">
+    <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 bg-night px-4 py-2 text-center text-sm text-white">
       <span className="inline-flex items-center gap-1.5">
         <Clock className="size-4 text-white/60" />
         You&apos;re in a private demo workspace. It deletes itself in about {hours} {hours === 1 ? "hour" : "hours"}.
@@ -26,23 +27,29 @@ function DemoBanner({ expiresAt }) {
 
 function Account({ user }) {
   return (
-    <div className="flex items-center gap-3 border-t border-line pt-4">
-      <div className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700">
-        {user.name
-          .split(" ")
-          .map((p) => p[0])
-          .slice(0, 2)
-          .join("")}
+    <div className="flex flex-col gap-3 border-t border-line pt-4">
+      <div className="flex items-center justify-between px-1">
+        <span className="text-xs text-muted">Appearance</span>
+        <ThemeToggle />
       </div>
-      <div className="min-w-0 flex-1">
-        <div className="truncate text-sm font-medium">{user.name}</div>
-        <div className="truncate text-xs capitalize text-muted">{user.role}</div>
+      <div className="flex items-center gap-3">
+        <div className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700">
+          {user.name
+            .split(" ")
+            .map((p) => p[0])
+            .slice(0, 2)
+            .join("")}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="truncate text-sm font-medium">{user.name}</div>
+          <div className="truncate text-xs capitalize text-muted">{user.role}</div>
+        </div>
+        <form action={logout}>
+          <button type="submit" aria-label="Sign out" title="Sign out" className="rounded-md p-2 text-muted hover:bg-hover hover:text-ink">
+            <LogOut className="size-4" />
+          </button>
+        </form>
       </div>
-      <form action={logout}>
-        <button type="submit" aria-label="Sign out" title="Sign out" className="rounded-md p-2 text-muted hover:bg-black/5 hover:text-ink">
-          <LogOut className="size-4" />
-        </button>
-      </form>
     </div>
   );
 }

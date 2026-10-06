@@ -7,11 +7,11 @@ const BUTTON = {
   base: "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap",
   size: { sm: "h-8 px-3 text-sm", md: "h-10 px-4 text-sm", lg: "h-12 px-6 text-base" },
   variant: {
-    primary: "bg-brand-600 text-white hover:bg-brand-700 shadow-sm",
+    primary: "bg-brand-600 text-white hover:bg-brand-500 shadow-sm",
     secondary: "bg-surface text-ink border border-line hover:border-line-strong hover:bg-canvas",
-    ghost: "text-muted hover:text-ink hover:bg-black/5",
+    ghost: "text-muted hover:text-ink hover:bg-hover",
     danger: "bg-bad text-white hover:bg-bad/90",
-    dark: "bg-ink text-white hover:bg-ink/85",
+    dark: "bg-night text-white hover:opacity-90",
   },
 };
 
@@ -51,7 +51,7 @@ const TONES = {
   ok: "bg-ok-soft text-ok",
   warn: "bg-warn-soft text-warn",
   bad: "bg-bad-soft text-bad",
-  neutral: "bg-black/5 text-muted",
+  neutral: "bg-hover text-muted",
   brand: "bg-brand-50 text-brand-700",
 };
 

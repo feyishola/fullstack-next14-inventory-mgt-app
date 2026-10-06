@@ -38,7 +38,7 @@ export function Toaster() {
     <div
       key={t.id}
       role="status"
-      className="fixed bottom-5 left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-xl bg-ink px-4 py-3 text-sm text-white shadow-[var(--shadow-pop)] animate-rise"
+      className="fixed bottom-5 left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-xl bg-night px-4 py-3 ring-1 ring-white/10 text-sm text-white shadow-[var(--shadow-pop)] animate-rise"
     >
       <Icon className={t.tone === "ok" ? "size-4 shrink-0 text-emerald-400" : "size-4 shrink-0 text-sky-300"} />
       {t.text}
