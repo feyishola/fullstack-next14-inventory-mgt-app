@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-canvas: #f7f7f4;
+  --color-surface: #ffffff;
+  --color-line: #e7e5df;
+  --color-line-strong: #d6d3cb;
+  --color-ink: #17171a;
+  --color-muted: #6b6a66;
+  --color-faint: #9b9a94;
+
+  --color-brand-50: #eef0ff;
+  --color-brand-100: #e0e3ff;
+  --color-brand-500: #5b5ff0;
+  --color-brand-600: #4645e0;
+  --color-brand-700: #3a37c2;
+
+  --color-ok: #138a53;
+  --color-ok-soft: #e4f5ec;
+  --color-warn: #a35c00;
+  --color-warn-soft: #fdf1dc;
+  --color-bad: #c22d3a;
+  --color-bad-soft: #fde8ea;
+
+  --radius-card: 14px;
+  --shadow-card: 0 1px 2px rgb(23 23 26 / 0.04);
+  --shadow-pop: 0 20px 50px -20px rgb(23 23 26 / 0.35);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    @apply bg-brand-100;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+  dialog::backdrop {
+    background: rgb(23 23 26 / 0.4);
+    backdrop-filter: blur(2px);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility animate-rise {
+  animation: rise 0.2s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

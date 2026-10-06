@@ -1,9 +1,6 @@
 # inherit from a existing image to add the functionality
 FROM node:20-alpine3.18
 
-# RUN addgroup app && adduser -S -G app app
-# USER app
-
 # Set the working directory and assign ownership to the non-root user
 WORKDIR /app
 
