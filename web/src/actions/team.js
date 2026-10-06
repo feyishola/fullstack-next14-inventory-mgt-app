@@ -6,12 +6,12 @@ import { connectDB } from "@/lib/db";
 import { User } from "@/lib/models";
 import { actionUser } from "@/lib/dal";
 import { ttl } from "@/lib/ttl";
-import { fieldErrors, memberSchema } from "@/lib/validation";
+import { fieldErrors, memberSchema, formValues } from "@/lib/validation";
 
 export async function addMember(_prev, formData) {
   const { user, error } = await actionUser({ admin: true });
   if (error) return { error };
-  const values = Object.fromEntries(formData);
+  const values = formValues(formData);
   const parsed = memberSchema.safeParse(values);
   if (!parsed.success) return { errors: fieldErrors(parsed.error), values };
 

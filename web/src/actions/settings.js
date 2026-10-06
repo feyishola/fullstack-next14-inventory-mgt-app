@@ -5,12 +5,12 @@ import { connectDB } from "@/lib/db";
 import { Product, Workspace } from "@/lib/models";
 import { actionUser } from "@/lib/dal";
 import { clearSampleData, seedSampleData } from "@/lib/sample-data";
-import { fieldErrors, workspaceSchema } from "@/lib/validation";
+import { fieldErrors, workspaceSchema, formValues } from "@/lib/validation";
 
 export async function updateWorkspace(_prev, formData) {
   const { user, error } = await actionUser({ admin: true });
   if (error) return { error };
-  const parsed = workspaceSchema.safeParse(Object.fromEntries(formData));
+  const parsed = workspaceSchema.safeParse(formValues(formData));
   if (!parsed.success) return { errors: fieldErrors(parsed.error) };
   await connectDB();
   await Workspace.updateOne({ _id: user.workspaceId }, parsed.data);

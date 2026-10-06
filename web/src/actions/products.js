@@ -8,7 +8,7 @@ import { Movement, Product } from "@/lib/models";
 import { actionUser } from "@/lib/dal";
 import { makeSku } from "@/lib/inventory";
 import { ttl } from "@/lib/ttl";
-import { fieldErrors, movementSchema, productSchema } from "@/lib/validation";
+import { fieldErrors, movementSchema, productSchema, formValues } from "@/lib/validation";
 
 const refresh = () => revalidatePath("/dashboard", "layout");
 
@@ -30,7 +30,7 @@ export async function saveProduct(_prev, formData) {
   const { user, error } = await actionUser();
   if (error) return { error };
 
-  const values = Object.fromEntries(formData);
+  const values = formValues(formData);
   const parsed = productSchema.safeParse(values);
   if (!parsed.success) return { errors: fieldErrors(parsed.error), values };
 
@@ -88,7 +88,7 @@ export async function recordMovement(_prev, formData) {
   const { user, error } = await actionUser();
   if (error) return { error };
 
-  const parsed = movementSchema.safeParse(Object.fromEntries(formData));
+  const parsed = movementSchema.safeParse(formValues(formData));
   if (!parsed.success) return { errors: fieldErrors(parsed.error) };
   const { productId, type, quantity, unitPrice, note } = parsed.data;
   const delta = type === "restock" ? quantity : -quantity;

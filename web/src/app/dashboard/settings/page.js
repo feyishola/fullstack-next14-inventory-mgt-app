@@ -7,6 +7,9 @@ import { SubmitButton } from "@/components/forms";
 import { ConfirmButton } from "@/components/ConfirmButton";
 import { WorkspaceForm } from "@/components/TeamForms";
 
+// Server actions on this page may seed sample data, which can exceed the default limit on a cold start
+export const maxDuration = 60;
+
 export const metadata = { title: "Settings" };
 
 export default async function SettingsPage() {

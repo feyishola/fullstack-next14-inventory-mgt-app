@@ -136,7 +136,16 @@ export async function seedSampleData(workspaceId, { user, expiresAt } = {}) {
       if (stock < needed) {
         const qty = needed - stock;
         stock += qty;
-        movements.push({ ...base, type: "restock", quantity: qty, delta: qty, unitPrice: cost, unitCost: cost, note: "Bulk delivery", at: atDay(2, 9) });
+        movements.push({
+          ...base,
+          type: "restock",
+          quantity: qty,
+          delta: qty,
+          unitPrice: cost,
+          unitCost: cost,
+          note: "Bulk delivery",
+          at: atDay(2, 9),
+        });
       }
     }
     products.push({
@@ -157,7 +166,9 @@ export async function seedSampleData(workspaceId, { user, expiresAt } = {}) {
   });
 
   await Product.insertMany(products);
-  await Movement.insertMany(movements);
+  // ~900 rows: skip per-document hydration (the data is generated above, not user
+  // input, and movements carry their own `at` date rather than timestamps)
+  await Movement.insertMany(movements, { lean: true });
   return { products: products.length, movements: movements.length };
 }
 

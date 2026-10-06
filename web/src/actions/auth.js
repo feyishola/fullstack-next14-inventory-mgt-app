@@ -6,7 +6,7 @@ import { connectDB } from "@/lib/db";
 import { User, Workspace } from "@/lib/models";
 import { createSession, deleteSession } from "@/lib/session";
 import { seedSampleData } from "@/lib/sample-data";
-import { fieldErrors, loginSchema, signupSchema } from "@/lib/validation";
+import { fieldErrors, loginSchema, signupSchema, formValues } from "@/lib/validation";
 
 // Compared against when the email doesn't exist, so response time doesn't
 // reveal which emails have accounts
@@ -17,7 +17,7 @@ const DEMO_LIMIT_PER_HOUR = 60;
 const safeNext = (next) => (typeof next === "string" && next.startsWith("/dashboard") ? next : "/dashboard");
 
 export async function signup(_prev, formData) {
-  const values = Object.fromEntries(formData);
+  const values = formValues(formData);
   const parsed = signupSchema.safeParse(values);
   if (!parsed.success) return { errors: fieldErrors(parsed.error), values };
 
@@ -42,7 +42,7 @@ export async function signup(_prev, formData) {
 }
 
 export async function login(_prev, formData) {
-  const values = Object.fromEntries(formData);
+  const values = formValues(formData);
   const parsed = loginSchema.safeParse(values);
   if (!parsed.success) return { errors: fieldErrors(parsed.error), values: { email: values.email } };
 

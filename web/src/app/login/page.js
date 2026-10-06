@@ -2,6 +2,9 @@ import Link from "next/link";
 import { AuthShell } from "@/components/AuthShell";
 import { DemoButton, LoginForm } from "@/components/AuthForms";
 
+// Server actions on this page may seed sample data, which can exceed the default limit on a cold start
+export const maxDuration = 60;
+
 export const metadata = { title: "Sign in" };
 
 const NOTICES = {

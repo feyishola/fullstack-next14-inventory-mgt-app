@@ -61,3 +61,8 @@ export function fieldErrors(error) {
   const flat = z.flattenError(error).fieldErrors;
   return Object.fromEntries(Object.entries(flat).map(([k, v]) => [k, v?.[0]]));
 }
+
+// Form fields without Next's internal "$ACTION_…" entries, safe to echo back
+export function formValues(formData) {
+  return Object.fromEntries([...formData.entries()].filter(([key]) => !key.startsWith("$")));
+}

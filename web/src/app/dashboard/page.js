@@ -11,6 +11,9 @@ import { StockDialog } from "@/components/StockDialog";
 import { RevenueChart } from "@/components/RevenueChart";
 import { MovementLabel } from "@/components/MovementLabel";
 
+// Server actions on this page may seed sample data, which can exceed the default limit on a cold start
+export const maxDuration = 60;
+
 export const metadata = { title: "Overview" };
 
 const WELCOME = {

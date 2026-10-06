@@ -5,6 +5,9 @@ import { Logo } from "@/components/Logo";
 import { DemoButton } from "@/components/AuthForms";
 import { ButtonLink } from "@/components/ui";
 
+// Server actions on this page may seed sample data, which can exceed the default limit on a cold start
+export const maxDuration = 60;
+
 const FEATURES = [
   {
     icon: ListChecks,
